@@ -1,7 +1,8 @@
 local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+--beautiful.init(gears.filesystem.get_themes_dir() .. "themes/default/theme.lua")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
