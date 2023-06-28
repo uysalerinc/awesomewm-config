@@ -2,7 +2,7 @@ local awful = require("awful")
 local gtable = require("gears.table")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require('keys.movekeys')
--- require('keys.appkeys')
+require('keys.appkeys')
 require('keys.menukeys')
 require('keys.layoutkeys')
 
@@ -12,17 +12,17 @@ globalkeys = gtable.join(
   gtable.join(movekeys),
   gtable.join(menukeys),
   gtable.join(layoutkeys),
--- gtable.join(appkeys), -- check appkeys.lua.template for information
+  gtable.join(appkeys),
 
-  awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+  awful.key({ modkey }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-  awful.key({ modkey, "Control" }, "r", awesome.restart,
+  awful.key({ modkey, ctrlkey }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-  awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+  awful.key({ modkey, shiftkey }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
-  awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+  awful.key({ modkey }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
-  awful.key({ modkey, "Control" }, "n",
+  awful.key({ modkey, ctrlkey }, "n",
           function ()
               local c = awful.client.restore()
               -- Focus restored client
@@ -37,42 +37,42 @@ globalkeys = gtable.join(
 
 
 clientkeys = gtable.join(
-    awful.key({ modkey,           }, "f",
+    awful.key({ modkey }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey, shiftkey}, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
+    awful.key({ modkey, ctrlkey }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey, ctrlkey }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
+    awful.key({ modkey }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
+    awful.key({ modkey}, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, "n",
+    awful.key({ modkey }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
+    awful.key({ modkey }, "m",
         function (c)
             c.maximized = not c.maximized
             c:raise()
         end ,
         {description = "(un)maximize", group = "client"}),
-    awful.key({ modkey, "Control" }, "m",
+    awful.key({ modkey, ctrlkey }, "m",
         function (c)
             c.maximized_vertical = not c.maximized_vertical
             c:raise()
         end ,
         {description = "(un)maximize vertically", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "m",
+    awful.key({ modkey, shiftkey}, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
@@ -96,7 +96,7 @@ for i = 1, 9 do
                   end,
                   {description = "view tag #"..i, group = "tag"}),
         -- Toggle tag display.
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
+        awful.key({ modkey, ctrlkey }, "#" .. i + 9,
                   function ()
                       local screen = awful.screen.focused()
                       local tag = screen.tags[i]
@@ -106,7 +106,7 @@ for i = 1, 9 do
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
         -- Move client to tag.
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, shiftkey }, "#" .. i + 9,
                   function ()
                       if client.focus then
                           local tag = client.focus.screen.tags[i]
@@ -117,7 +117,7 @@ for i = 1, 9 do
                   end,
                   {description = "move focused client to tag #"..i, group = "tag"}),
         -- Toggle tag on focused client.
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, ctrlkey, shiftkey }, "#" .. i + 9,
                   function ()
                       if client.focus then
                           local tag = client.focus.screen.tags[i]

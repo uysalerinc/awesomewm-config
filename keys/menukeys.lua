@@ -4,8 +4,11 @@ local menubar = require('menubar')
 
 menukeys = gtable.join(
 
- awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+  awful.key({ modkey, shiftkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
            {description = "run prompt", group = "launcher"}),
+
+  awful.key({modkey}, "r", function () awful.spawn.with_shell("rofi -show combi") end,
+            {description = "Rofi Menubar", group = "launcher"}),
 
  awful.key({ modkey }, "x",
            function ()
@@ -20,6 +23,6 @@ menukeys = gtable.join(
  -- Menubar
  awful.key({ modkey }, "p", function() menubar.show() end,
            {description = "show the menubar", group = "launcher"}),
- awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+ awful.key({ modkey }, "w", function () mymainmenu:show() end,
           {description = "show main menu", group = "awesome"})
            )

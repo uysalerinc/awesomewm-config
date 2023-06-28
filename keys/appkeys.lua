@@ -1,6 +1,3 @@
--- Firstly uncommand 5th and 15th lines from init.lua and create a copy of this file as appkeys.lua. Then restart awesome.
--- There is a example that opens Firefox. 
-
 local awful = require('awful')
 local gtable = require('gears.table')
 

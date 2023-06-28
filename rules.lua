@@ -1,7 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
---beautiful.init(gears.filesystem.get_themes_dir() .. "themes/default/theme.lua")
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- Rules to apply to new clients (through the "manage" signal).
@@ -56,7 +55,17 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+     { rule = { class = "firefox" },
+       properties = { screen = 1, tag = "" } },
+     { rule = { class = "Code" },
+       properties = { screen = 1, tag = "" } },
+     { rule = { class = "Emacs" },
+       properties = { screen = 1, tag = "" } },
+     { rule = { class = "discord" },
+       properties = { screen = 1, tag = "" } },
+     { rule = { class = "Spotify" },
+       properties = { screen = 1, tag = "" } },
 }
+
+
 

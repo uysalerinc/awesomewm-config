@@ -12,6 +12,9 @@ require("awful.hotkeys_popup.keys")
 
 
 modkey = "Mod4"
+shiftkey = "Shift"
+ctrlkey = "Control"
+altkey = "Mod1"
 
 local keys = require("keys")
 local rules = require("rules")
