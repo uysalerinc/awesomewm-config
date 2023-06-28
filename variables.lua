@@ -1,7 +1,7 @@
 local awful = require("awful")
 
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 
@@ -26,15 +26,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.se,
 }
 
-
-
--- Each screen has its own tag table.
-awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-
--- Alternative tag table which you can set layouts per screen.
----{{{
--- local names = { "1", "2", "3", "4", "5", "6" ,"7", "8", "9" }
--- local l = awful.layout.suit  -- Just to save some typing: use an alias.
--- local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile,  l.tile, l.tile, l.tile, l.tile}
--- awful.tag(names, s, layouts)
----}}}
+    local names = {  "", "", "", "", "", "", "", ""}
+    local l = awful.layout.suit  -- Just to save some typing: use an alias.
+    local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile,  l.tile, l.tile, l.tile, l.tile}
+    awful.tag(names, s, layouts)
