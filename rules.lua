@@ -65,6 +65,8 @@ awful.rules.rules = {
        properties = { screen = 1, tag = "" } },
      { rule = { class = "Spotify" },
        properties = { screen = 1, tag = "" } },
+     { rule = { class = "Unity" },
+       properties = { screen = 1, tag = "" } },
 }
 
 
