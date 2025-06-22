@@ -1,61 +1,54 @@
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
+local xrdb = xresources.get_current_theme()
 
 local colors = {
-    bg = "#282A36",
-    fg = "#f8f8f2",
-    cl = "#44475A",
-    comment = "#6272a4",
-    cyan = "#8be9fd",
-    green = "#50fa7b",
-    orange = "#ffb86c",
-    pink = "#ff79c6",
-    purple = "#bd93f9",
-    violet = "#7f00ff",
-    red = "#ff5555",
-    yellow = "#f1fa8c",
+    -- general theme
+    bg      = xrdb.background,
+    fg      = xrdb.foreground,
+    cl      = xrdb.color8,
+    focus = xrdb.color0,
+
+    -- core color palette
+    red     = xrdb.color1,
+    green   = xrdb.color2,
+    yellow  = xrdb.color3,
+    blue    = xrdb.color4,
+    pink    = xrdb.color5,
+    cyan    = xrdb.color6,
+    violet  = xrdb.color12,
+    orange  = xrdb.color9,
+    purple  = xrdb.color4,
+    white = xrdb.color15,
 }
 
 local theme = {}
 
---theme.font          = "Hack Nerd Font Mono 8"
 theme.font          = "Roboto Bold 7"
 theme.taglist_font = "Hack Nerd Font Mono 12"
 
 theme.bg_normal     =  colors.bg
-theme.bg_focus      = "#535d6c"
+theme.bg_focus      = colors.focus
 theme.bg_urgent     = colors.red
-theme.bg_minimize   = "#444444"
+theme.bg_minimize   = colors.cl
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = colors.comment
+theme.fg_normal     = colors.cl
 theme.fg_focus      = colors.fg
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_urgent     = colors.red
+theme.fg_minimize   = colors.white
 
 theme.useless_gap   = dpi(1.5)
 theme.border_width  = dpi(0.5)
-theme.border_normal = colors.cl
+theme.border_normal = colors.bg
 theme.border_focus  =  colors.violet
-theme.border_marked = "#91231c"
+theme.border_marked = colors.red
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- prompt_[fg|bg|fg_cursor|bg_cursor|font]
--- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
 
 theme.taglist_fg_occupied = colors.purple
 theme.taglist_bg_focus = theme.bg_normal
 theme.taglist_fg_focus = colors.fg
-theme.taglist_fg_empty = colors.comment
+theme.taglist_fg_empty = colors.cl
 
 -- Variables set for theming notifications:
 -- notification_font
