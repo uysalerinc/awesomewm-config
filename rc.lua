@@ -145,18 +145,24 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
+
+    for _, i in pairs(awful.util.tagnames[s.index]) do
+       awful.tag.add(i.name, {
+         layout = i.lay or awful.layout.layouts[1],
+         gap = i.gap or beautiful.useless_gap,
+         gap_single_client = not i.sgap,
+         screen = s,
+         selected = i.sel or false,
+         master_width_factor = i.mw or 0.5,
+       })
+     end
+
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
     }
-
-    -- Create a tasklist widget
-    --[[ s.mytasklist = awful.widget.tasklist { ]]
-    --[[     screen  = s, ]]
-    --[[     filter  = awful.widget.tasklist.filter.currenttags, ]]
-    --[[     buttons = tasklist_buttons ]]
-    --[[ } ]]
+    naughty.notify { text = "Screen index: " .. s.index }
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })

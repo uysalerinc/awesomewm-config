@@ -13,8 +13,21 @@ awful.layout.layouts = {
     awful.layout.suit.fair,
     awful.layout.suit.max,
 }
+    local taglist_s1 = {
+        {name= "",sel= true},
+        {name= "",},
+        {name= "",},
+        {name= "",},
+        {name= "",},
+        {name= "",},
+    }
 
-    local names = {  "", "", "", "", "", "", "", ""}
+    local taglist_s2 = {
+        {name= "*", sel=true},
+        {name= "*",},
+        {name= "*",},
+        {name= "*",},
+    }
     local l = awful.layout.suit  -- Just to save some typing: use an alias.
     local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile,  l.tile, l.tile, l.tile, l.tile}
-    awful.tag(names, s, layouts)
+    awful.util.tagnames = { taglist_s1, taglist_s2}
