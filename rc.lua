@@ -18,7 +18,7 @@ altkey = "Mod1"
 
 local keys = require("keys")
 local rules = require("rules")
-
+local widgets = require("widgets")
 
 awful.util.terminal = terminal
 -- {{{ Error handling
@@ -72,8 +72,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -167,6 +165,24 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    local right_widgets
+
+    if s.index == 1 then
+
+        right_widgets = {
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            s.mylayoutbox,
+        }
+
+    else
+
+        right_widgets = {
+            layout = wibox.layout.fixed.horizontal,
+            s.mylayoutbox,
+        }
+    end
+
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -176,14 +192,8 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
-        },
+        wibox.container.place(widgets.textclock, "center"),
+        right_widgets,
     }
 end)
 -- }}}
