@@ -1,6 +1,6 @@
 local awful = require("awful")
 
-terminal = "alacritty"
+terminal = "st -e tmux"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 

@@ -7,8 +7,8 @@ menukeys = gtable.join(
   awful.key({ modkey, shiftkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
            {description = "run prompt", group = "launcher"}),
 
-  awful.key({modkey}, "r", function () awful.spawn.with_shell("rofi -show combi") end,
-            {description = "Rofi Menubar", group = "launcher"}),
+  awful.key({modkey}, "r", function () awful.spawn.with_shell("dmenu_run") end,
+            {description = "Dmenu Run", group = "launcher"}),
 
  awful.key({ modkey }, "x",
            function ()
